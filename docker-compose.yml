@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - mysqlVolume:/var/lib/mysql
+      - mysqlConfig:/etc/mysql
+
+  python-docker:
+    build:
+      context: .
+    ports:
+      - 3000:5000
+    depends_on:
+      - mysql
+
+volumes:
+  mysqlVolume:
+  mysqlConfig:
