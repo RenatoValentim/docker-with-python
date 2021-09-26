@@ -13,7 +13,7 @@ def hello():
 @app.route('/insert', methods=['POST'])
 def insert():
     userRepository = UserRepository()
-    body = request.json()
+    body = request.json
     userRepository.insert(body['name'])
 
     return 'OK'
